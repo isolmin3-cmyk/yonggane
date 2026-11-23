@@ -7,3 +7,4 @@
 .trade img{width:clamp(104px,13vw,168px);aspect-ratio:1;flex-shrink:0}
 @media(max-width:830px){.trade{flex-wrap:wrap}.trade>div{flex:1;min-width:min(100%,240px)}}
 @media(max-width:590px){.trade img{width:100%;aspect-ratio:1.65;object-position:center 48%}}
+.brand img{width:44px;height:44px}

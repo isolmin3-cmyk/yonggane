@@ -1,49 +1,93 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Yonggane by Gijeok Fisheries. Abalone and Korean seafood from Jindo, South Korea.">
+<meta name="description" content="진도에서 전복과 해조류를 키우고 수산식품을 만드는 기적수산의 용가네입니다.">
 <meta name="theme-color" content="#102b31">
-<title>Products | YONGGANE</title>
-<link rel="stylesheet" href="style.css?v=2">
-<script src="site.js?v=2" defer></script>
+<title>제품 | 용가네</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="style.css?v=ko1">
+<script src="site.js?v=ko1" defer></script>
 </head>
-<body id="top" data-title-ko="제품 | 용가네">
-<a class="skip" href="#main" data-ko="본문 바로가기">Skip to content</a>
+<body id="top">
+<a class="skip" href="#main">본문 바로가기</a>
 <header class="header">
   <div class="nav wrap">
-    <a href="./" class="brand" aria-label="Yonggane"><img alt="용가네" src="assets/logo.jpg?v=2"><span>YONGGANE<small>GIJEOK FISHERIES</small></span></a>
-    <button type="button" class="menu" aria-expanded="false" aria-controls="navigation" data-ko="메뉴">Menu</button>
-    <nav id="navigation" aria-label="Main navigation">
-      <a href="company.html" data-ko="회사 소개">Our Story</a><a href="products.html" aria-current="page" data-ko="제품">Products</a><a href="production.html" data-ko="생산과 품질">Production</a><a href="export.html" data-ko="해외 수출">Export</a><a href="contact.html" data-ko="문의">Contact</a>
+    <a href="./" class="brand" aria-label="용가네 홈"><img alt="" src="assets/logo.jpg?v=2" width="44" height="44"><span>용가네<small>기적수산</small></span></a>
+    <button type="button" class="menu" aria-expanded="false" aria-controls="navigation">메뉴</button>
+    <nav id="navigation" aria-label="주 메뉴">
+      <details>
+        <summary>회사 소개</summary>
+        <ul class="submenu">
+          <li><a href="company.html">회사 소개 전체 보기</a></li>
+          <li><a href="company.html#story">용가네 이야기</a></li>
+          <li><a href="company.html#history">회사 연혁</a></li>
+        </ul>
+      </details>
+      <details>
+        <summary>생산·품질</summary>
+        <ul class="submenu">
+          <li><a href="production.html">생산·품질 전체 보기</a></li>
+          <li><a href="production.html#aquaculture">전복·해조류 양식</a></li>
+          <li><a href="production.html#processing">수산식품 가공</a></li>
+          <li><a href="production.html#quality">인증 및 품질 관리</a></li>
+        </ul>
+      </details>
+      <details class="current">
+        <summary>제품 소개</summary>
+        <ul class="submenu">
+          <li><a href="products.html" aria-current="page">제품 소개 전체 보기</a></li>
+          <li><a href="products.html#porridge">전복죽</a></li>
+          <li><a href="products.html#seaweed">전복미역국</a></li>
+          <li><a href="products.html#eel">장어탕</a></li>
+          <li><a href="products.html#cooked">냉동 자숙 전복</a></li>
+        </ul>
+      </details>
+      <details>
+        <summary>해외 수출</summary>
+        <ul class="submenu">
+          <li><a href="export.html">해외 수출 전체 보기</a></li>
+          <li><a href="export.html#markets">해외 공급 시장</a></li>
+          <li><a href="export.html#wholesale">업소용 공급</a></li>
+        </ul>
+      </details>
+      <details>
+        <summary>사업 문의</summary>
+        <ul class="submenu">
+          <li><a href="contact.html">사업 문의 전체 보기</a></li>
+          <li><a href="contact.html#inquiry">거래 문의 안내</a></li>
+          <li><a href="contact.html#contact">이메일 문의</a></li>
+        </ul>
+      </details>
     </nav>
-    <div class="language" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ko" aria-pressed="false">KR</button></div>
   </div>
 </header>
-<main id="main">
+<main id="main" tabindex="-1">
 <section class="page-intro"><div class="wrap">
- <a class="breadcrumb" href="./" data-ko="홈">Home</a>
- <p class="eyebrow" data-ko="제품">PRODUCTS</p>
- <h1 data-ko="용가네 제품">The Yonggane range.</h1>
- <p data-ko="전복을 담은 수산식품과 업소용 자숙 전복을 소개합니다.">Korean seafood dishes and cooked abalone for foodservice.</p>
+ <a class="breadcrumb" href="./">홈</a>
+ <p class="eyebrow">제품</p>
+ <h1>용가네 제품</h1>
+ <p>전복을 담은 수산식품과 업소용 자숙 전복을 소개합니다.</p>
  </div></section>  <section class="products section" id="products">
     <div class="wrap">
-      <p class="eyebrow" data-ko="제품 소개">OUR PRODUCTS</p>
-      <h2 data-ko="진도 바다를 담은 한 끼">Seafood from Jindo.</h2>
+      <p class="eyebrow">제품 소개</p>
+      <h2>진도 바다를 담은 한 끼</h2>
       <div class="product-grid">
-        <article><img src="assets/porridge.jpg" alt="Abalone porridge topped with sliced abalone" data-alt-ko="전복 슬라이스를 올린 전복죽" loading="lazy"><h3 data-ko="전복죽">Abalone Porridge</h3><p data-ko="전복을 넣어 끓인 부드러운 쌀죽입니다.">A comforting rice porridge made with abalone.</p></article>
-        <article><img src="assets/seaweed.jpg" alt="Bowl of abalone seaweed soup" data-alt-ko="전복미역국 한 그릇" loading="lazy"><h3 data-ko="전복미역국">Abalone Seaweed Soup</h3><p data-ko="전복과 미역을 함께 끓인 한국식 국입니다.">A classic Korean soup with abalone and seaweed.</p></article>
-        <article><img src="assets/eel.jpg" alt="Yonggane eel soup served with its packaging" data-alt-ko="용가네 장어탕 패키지와 조리된 장어탕" loading="lazy"><h3 data-ko="장어탕">Eel Soup</h3><p data-ko="장어를 넣고 끓인 진한 국물 요리입니다.">A hearty Korean soup made with eel.</p></article>
+        <article id="porridge"><img src="assets/porridge.jpg" alt="전복 슬라이스를 올린 전복죽" loading="lazy"><h3>전복죽</h3><p>전복을 넣어 끓인 부드러운 쌀죽입니다.</p></article>
+        <article id="seaweed"><img src="assets/seaweed.jpg" alt="전복미역국 한 그릇" loading="lazy"><h3>전복미역국</h3><p>전복과 미역을 함께 끓인 한국식 국입니다.</p></article>
+        <article id="eel"><img src="assets/eel.jpg" alt="용가네 장어탕 패키지와 조리된 장어탕" loading="lazy"><h3>장어탕</h3><p>장어를 넣고 끓인 진한 국물 요리입니다.</p></article>
       </div>
-      <div class="trade">
-        <img src="assets/cooked.jpg" alt="Vacuum-packed cooked abalone" data-alt-ko="진공 포장한 자숙 전복" loading="lazy">
-        <div><p class="eyebrow" data-ko="업소용·수출용">FOODSERVICE & WHOLESALE</p><h3 data-ko="냉동 자숙 전복">Frozen Cooked Abalone</h3><p data-ko="외식·급식·간편식 제조에 사용할 수 있는 자숙 전복입니다. 슬라이스 규격도 문의하실 수 있습니다.">Cooked abalone for foodservice and meal manufacturers. Contact us about sliced formats.</p><ul class="spec"><li data-ko="1 kg 진공 포장">1 kg vacuum pack</li><li data-ko="−18°C 이하 냉동 보관">Store at −18°C or below</li></ul></div>
-        <a class="button dark" href="mailto:kjmarine1@naver.com?subject=Frozen%20Cooked%20Abalone%20Inquiry" data-ko="공급 문의">Ask about supply</a>
+      <div class="trade" id="cooked">
+        <img src="assets/cooked.jpg" alt="진공 포장한 자숙 전복" loading="lazy">
+        <div><p class="eyebrow">업소용·수출용</p><h3>냉동 자숙 전복</h3><p>외식·급식·간편식 제조에 사용할 수 있는 자숙 전복입니다. 슬라이스 규격도 문의하실 수 있습니다.</p><ul class="spec"><li>1 kg 진공 포장</li><li>−18°C 이하 냉동 보관</li></ul></div>
+        <a class="button dark" href="mailto:kjmarine1@naver.com?subject=Frozen%20Cooked%20Abalone%20Inquiry">공급 문의</a>
       </div>
     </div>
   </section>
 </main>
-<footer><div class="wrap"><div><strong>YONGGANE</strong><p data-ko="어업회사법인 유한회사 기적수산">Gijeok Fisheries Co., Ltd.</p></div><div><p data-ko="전라남도 진도군">Jindo-gun, Jeollanam-do, South Korea</p><a href="mailto:kjmarine1@naver.com">kjmarine1@naver.com</a></div><a href="#top" data-ko="맨 위로">Back to top</a></div></footer>
+<footer><div class="wrap"><div><strong>용가네</strong><p>어업회사법인 유한회사 기적수산</p></div><div><p>전라남도 진도군</p><a href="mailto:kjmarine1@naver.com">kjmarine1@naver.com</a></div><a href="#top">맨 위로</a></div></footer>
 </body>
 </html>

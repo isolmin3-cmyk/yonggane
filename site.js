@@ -1,52 +1,59 @@
-const textElements = [...document.querySelectorAll('[data-ko]')];
-const imageElements = [...document.querySelectorAll('[data-alt-ko]')];
-const englishCopy = textElements.map(element => element.innerHTML);
-const englishAlts = imageElements.map(element => element.alt);
-const languageButtons = [...document.querySelectorAll('[data-lang]')];
-const englishTitle = document.title;
-const koreanTitle = document.body.dataset.titleKo || '용가네 — 진도에서 온 수산식품';
-const pageLinks = [...document.querySelectorAll('a[href="./"], a[href$=".html"]')];
-const menu = document.querySelector('.menu');
-const navigation = document.getElementById('navigation');
+document.documentElement.classList.add("js");
 
-function showLanguage(language) {
-  const korean = language === 'ko';
-  document.documentElement.lang = language;
-  document.title = korean ? koreanTitle : englishTitle;
-  navigation.setAttribute('aria-label', korean ? '주 메뉴' : 'Main navigation');
-  pageLinks.forEach(link => {
-    const path = link.getAttribute('href').split('?')[0];
-    link.setAttribute('href', korean ? path + '?lang=ko' : path);
+const navigation = document.querySelector('#navigation');
+const menu = document.querySelector('.menu');
+const groups = [...navigation.querySelectorAll('details')];
+
+function closeGroups(except) {
+  groups.forEach(group => {
+    if (group !== except) group.open = false;
   });
-  textElements.forEach((element, index) => {
-    element.innerHTML = korean ? element.dataset.ko : englishCopy[index];
-  });
-  imageElements.forEach((element, index) => {
-    element.alt = korean ? element.dataset.altKo : englishAlts[index];
-  });
-  languageButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === language)));
 }
 
-function showMenu(open) {
+function setMobileMenu(open) {
   menu.setAttribute('aria-expanded', String(open));
   navigation.classList.toggle('open', open);
+  if (!open) closeGroups();
 }
 
-languageButtons.forEach(button => button.addEventListener('click', () => {
-  showLanguage(button.dataset.lang);
-  const url = new URL(location.href);
-  if (button.dataset.lang === 'ko') url.searchParams.set('lang', 'ko');
-  else url.searchParams.delete('lang');
-  if (location.protocol !== 'file:') history.replaceState(null, '', url);
+menu.addEventListener('click', () => {
+  setMobileMenu(menu.getAttribute('aria-expanded') !== 'true');
+});
+
+groups.forEach(group => group.addEventListener('toggle', () => {
+  if (group.open) closeGroups(group);
 }));
 
-menu.addEventListener('click', () => showMenu(menu.getAttribute('aria-expanded') !== 'true'));
-navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => showMenu(false)));
+navigation.addEventListener('click', event => {
+  if (event.target.closest('a')) setMobileMenu(false);
+});
+
+document.addEventListener('click', event => {
+  if (!event.target.closest('.header')) setMobileMenu(false);
+});
+
 document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
-    showMenu(false);
+  if (event.key !== 'Escape') return;
+  const openGroup = groups.find(group => group.open);
+  if (openGroup) {
+    openGroup.open = false;
+    openGroup.querySelector('summary').focus();
+  } else if (menu.getAttribute('aria-expanded') === 'true') {
+    setMobileMenu(false);
     menu.focus();
   }
 });
 
-if (new URL(location.href).searchParams.get('lang') === 'ko') showLanguage('ko');
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const reveal = new IntersectionObserver(entries => {
+    entries.forEach(({ isIntersecting, target }) => {
+      if (!isIntersecting) return;
+      target.classList.add('revealed');
+      reveal.unobserve(target);
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.section h2, .product-grid article, .trade').forEach(element => {
+    if (element.getBoundingClientRect().top > innerHeight) reveal.observe(element);
+  });
+}

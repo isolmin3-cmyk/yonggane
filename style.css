@@ -8,3 +8,11 @@
 @media(max-width:830px){.trade{flex-wrap:wrap}.trade>div{flex:1;min-width:min(100%,240px)}}
 @media(max-width:590px){.trade img{width:100%;aspect-ratio:1.65;object-position:center 48%}}
 .brand img{width:44px;height:44px}
+.page-intro{background:var(--ocean);color:#fff;padding-block:48px clamp(64px,9vw,112px)}
+.page-intro .eyebrow{color:#bce1cf;margin-top:28px}
+.page-intro h1{font-size:clamp(2.9rem,7vw,6.25rem)}
+.page-intro p:last-child{font-size:1.13rem;max-width:43ch;color:#e3eeea}
+.breadcrumb{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:4px}
+.header nav a[aria-current=page]{color:var(--teal);text-decoration:underline;text-underline-offset:5px}
+.details .quality-layout img{max-height:450px}
+@media(max-width:960px) and (min-width:831px){.header nav{gap:16px}.nav{gap:12px}}

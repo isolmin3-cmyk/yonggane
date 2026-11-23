@@ -3,13 +3,21 @@ const imageElements = [...document.querySelectorAll('[data-alt-ko]')];
 const englishCopy = textElements.map(element => element.innerHTML);
 const englishAlts = imageElements.map(element => element.alt);
 const languageButtons = [...document.querySelectorAll('[data-lang]')];
+const englishTitle = document.title;
+const koreanTitle = document.body.dataset.titleKo || '용가네 — 진도에서 온 수산식품';
+const pageLinks = [...document.querySelectorAll('a[href="./"], a[href$=".html"]')];
 const menu = document.querySelector('.menu');
 const navigation = document.getElementById('navigation');
 
 function showLanguage(language) {
   const korean = language === 'ko';
   document.documentElement.lang = language;
-  document.title = korean ? '용가네 — 진도에서 온 수산식품' : 'YONGGANE — Seafood from Jindo';
+  document.title = korean ? koreanTitle : englishTitle;
+  navigation.setAttribute('aria-label', korean ? '주 메뉴' : 'Main navigation');
+  pageLinks.forEach(link => {
+    const path = link.getAttribute('href').split('?')[0];
+    link.setAttribute('href', korean ? path + '?lang=ko' : path);
+  });
   textElements.forEach((element, index) => {
     element.innerHTML = korean ? element.dataset.ko : englishCopy[index];
   });

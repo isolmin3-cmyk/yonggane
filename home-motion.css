@@ -3,7 +3,7 @@
     overflow: hidden;
   }
 
-  .hero.home::after {
+  .hero.home[data-reveal="shown"]::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -13,24 +13,37 @@
     animation: coast-reveal 2.2s cubic-bezier(.18,.65,.25,1) both;
   }
 
-  .home .hero-inner > * {
+  .home[data-reveal="shown"] .hero-inner > * {
     animation: title-reveal .85s cubic-bezier(.17,.67,.32,1) both;
   }
 
-  .home .hero-inner h1 { animation-delay: .09s; }
-  .home .hero-inner h1 + p { animation-delay: .21s; }
-  .home .hero-inner .actions { animation-delay: .32s; }
+  .home[data-reveal="shown"] .hero-inner h1 { animation-delay: .09s; }
+  .home[data-reveal="shown"] .hero-inner h1 + p { animation-delay: .21s; }
+  .home[data-reveal="shown"] .hero-inner .actions { animation-delay: .32s; }
 
-  .home .caption {
+  .home[data-reveal="shown"] .caption {
     animation: title-reveal .65s .45s ease-out both;
   }
 
-  .home + .facts .wrap > div {
+  .facts[data-reveal="shown"] .wrap > div {
     animation: title-reveal .7s .32s ease-out both;
   }
 
-  .home + .facts .wrap > div:nth-child(2) { animation-delay: .42s; }
-  .home + .facts .wrap > div:nth-child(3) { animation-delay: .52s; }
+  .facts[data-reveal="shown"] .wrap > div:nth-child(2) { animation-delay: .42s; }
+  .facts[data-reveal="shown"] .wrap > div:nth-child(3) { animation-delay: .52s; }
+
+  [data-reveal="pending"] > .wrap {
+    opacity: 0;
+  }
+
+  [data-reveal="pending"]:focus-within > .wrap {
+    opacity: 1;
+  }
+
+  .band[data-reveal="shown"] > .wrap,
+  .cta[data-reveal="shown"] > .wrap {
+    animation: title-reveal .72s cubic-bezier(.17,.67,.32,1) both;
+  }
 
   @keyframes coast-reveal {
     from { transform: scale(1.12); }

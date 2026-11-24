@@ -1,10 +1,10 @@
-.company-archive, .company-photos figure { margin: 0; }
-.company-archive img, .company-photos img {
+.company-archive { margin: 0; }
+.company-archive img {
   aspect-ratio: 16 / 10;
   height: auto;
   border-radius: 5px;
 }
-.company-archive figcaption, .company-photos figcaption {
+.company-archive figcaption {
   margin-top: .55rem;
   color: var(--muted);
   font-size: .9rem;
@@ -22,8 +22,8 @@
 .company-note { color: var(--muted); font-size: .9rem; }
 .company-steps {
   display: grid;
-  grid-template-columns: repeat(5,minmax(0,1fr));
-  gap: 12px;
+  grid-template-columns: minmax(0,1fr);
+  gap: clamp(1rem, 3vw, 1.75rem);
   margin: 2rem 0 .5rem;
   padding: 0;
   list-style: none;
@@ -34,7 +34,7 @@
   isolation: isolate;
   display: grid;
   align-items: end;
-  min-height: clamp(17rem, 26vw, 23rem);
+  min-height: clamp(16rem, 38vw, 31rem);
   counter-increment: production;
   overflow: hidden;
   background: var(--ink);
@@ -47,13 +47,14 @@
   height: 100%;
 }
 .company-steps li img { object-fit: cover; z-index: -2; }
-.company-steps .step-product img { object-position: 48% 45%; }
+.company-steps .step-product { background: #bfc8c6; }
+.company-steps .step-product img { object-fit: contain; }
 .company-steps li::after {
   content: "";
   z-index: -1;
   background: linear-gradient(180deg, transparent 18%, #0a25273d 36%, #081e21d9 64%, #051719 100%);
 }
-.company-steps li > div { padding: clamp(.9rem, 1.65vw, 1.3rem); }
+.company-steps li > div { padding: clamp(1.1rem, 3.5vw, 2.8rem); }
 .company-steps li > div::before {
   content: counter(production, decimal-leading-zero);
   display: block;
@@ -63,6 +64,6 @@
 }
 .company-steps li p { color: #f0f6f5; }
 .company-history-link { margin-left: 1rem; }
-.company-photos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 2rem; }
-@media (max-width: 900px) { .company-steps { grid-template-columns: repeat(3,minmax(0,1fr)); } }
-@media (max-width: 620px) { .company-steps, .company-photos { grid-template-columns: 1fr; } }
+@media (max-width: 620px) {
+  .company-steps li { min-height: clamp(17rem, 75vw, 23rem); }
+}

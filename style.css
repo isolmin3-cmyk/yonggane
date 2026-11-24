@@ -65,7 +65,6 @@
   font-weight: 500;
 }
 .header .submenu a:hover, .header .submenu a:focus-visible { background: var(--cream); }
-.header .submenu li:first-child a { font-weight: 700; }
 .menu { border: 1px solid var(--line); border-radius: 5px; padding-inline: 13px; }
 .hero-content > p:not(.eyebrow), .page-intro p:last-child { font-size: 1.0625rem; word-break: keep-all; }
 @keyframes enter {

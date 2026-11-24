@@ -165,3 +165,41 @@
 
 .product-link { display: block; text-decoration: none; }
 .product-link:is(:hover, :focus-visible) h3 { text-decoration: underline; text-underline-offset: .2em; }
+
+.detail-table {
+  width: 100%;
+  align-self: start;
+  margin-block: 18px 0;
+  border-collapse: collapse;
+  font-size: .95rem;
+  text-align: left;
+}
+.detail-table caption {
+  padding-bottom: 10px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--ink);
+}
+.detail-table :is(th, td) {
+  padding: .65em clamp(.55em, 1.3vw, 1em);
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.detail-table thead { background: #e2ebe2; }
+.detail-table tbody th { width: 29%; color: var(--ink); }
+.detail-table tbody td { color: var(--muted); }
+.detail-table tbody tr:nth-child(even) { background: var(--cream); }
+.quality-layout > .detail-table { margin-top: 0; }
+.quality-layout:has(> .detail-table) > img {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1.6;
+}
+.detail-photo { margin-block: 0 clamp(45px, 6vw, 80px); }
+.detail-photo img { aspect-ratio: 2.1; object-position: center; }
+.detail-photo figcaption { margin-top: 10px; color: var(--muted); font-size: .9rem; }
+@media (max-width: 590px) {
+  .detail-photo img { aspect-ratio: 1.45; }
+  .detail-table tbody th { width: 32%; }
+}

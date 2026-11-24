@@ -31,12 +31,15 @@
 }
 .company-steps li {
   counter-increment: production;
-  padding: 1rem;
+  overflow: hidden;
   background: var(--mist);
   border-top: 3px solid var(--sea);
   border-radius: 3px;
 }
-.company-steps li::before {
+.company-steps li > div { padding: 1rem; }
+.company-steps li img { aspect-ratio: 3 / 2; height: auto; }
+.company-history-link { margin-left: 1rem; }
+.company-steps li > div::before {
   content: counter(production, decimal-leading-zero);
   display: block;
   color: #15584e;

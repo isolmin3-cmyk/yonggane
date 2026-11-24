@@ -109,3 +109,27 @@
   .steps-animated > .step-shown:nth-child(4) { animation-delay: .3s; }
   .steps-animated > .step-shown:nth-child(5) { animation-delay: .4s; }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .timeline-animated li { --milestone-shift: 54px; }
+  .timeline-animated li:nth-child(even) { --milestone-shift: -54px; }
+  .timeline-animated li:not(.milestone-shown) > div,
+  .timeline-animated li:not(.milestone-shown)::before { opacity: 0; }
+  .timeline-animated .milestone-shown > div {
+    animation: milestone-arrive .92s cubic-bezier(.18,.68,.28,1) both;
+  }
+  .timeline-animated .milestone-shown::before {
+    animation: milestone-dot .65s cubic-bezier(.18,.68,.28,1) both;
+  }
+  @keyframes milestone-arrive {
+    from { opacity: 0; transform: translate(var(--milestone-shift), 25px); }
+    to { opacity: 1; transform: translate(0, 0); }
+  }
+  @keyframes milestone-dot {
+    from { opacity: 0; scale: .35; }
+    to { opacity: 1; scale: 1; }
+  }
+}
+@media (max-width: 680px) and (prefers-reduced-motion: no-preference) {
+  .timeline-animated li:nth-child(n) { --milestone-shift: 0px; }
+}

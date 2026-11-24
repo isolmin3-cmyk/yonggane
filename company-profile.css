@@ -9,17 +9,60 @@
   color: var(--muted);
   font-size: .9rem;
 }
-.company-timeline { margin: 2rem 0 1rem; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-.company-timeline li {
-  display: grid;
-  grid-template-columns: clamp(4rem, 15vw, 9rem) 1fr;
-  gap: 1rem;
-  padding-block: 1.25rem;
-  border-bottom: 1px solid var(--line);
+.company-history > .wrap > :is(.kicker, h2, .company-note) { text-align: center; }
+.company-timeline {
+  position: relative;
+  max-width: 980px;
+  margin: clamp(2.5rem, 6vw, 4.5rem) auto 1.75rem;
+  padding: 0;
+  list-style: none;
 }
-.company-timeline time { font-size: clamp(1rem, 3vw, 1.4rem); }
+.company-timeline::before {
+  content: "";
+  position: absolute;
+  inset: .8rem auto .8rem 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: #b9cec7;
+}
+.company-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: 9rem;
+  padding-bottom: 2.6rem;
+}
+.company-timeline li:last-child { padding-bottom: 0; }
+.company-timeline li::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: .7rem;
+  left: 50%;
+  width: .9rem;
+  height: .9rem;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: var(--sea);
+  box-shadow: 0 0 0 5px #d5e5df;
+}
+.company-timeline li > div { padding-inline: clamp(1.5rem, 5vw, 4rem); }
+.company-timeline li:nth-child(odd) > div { grid-column: 2; }
+.company-timeline li:nth-child(even) > div { text-align: right; }
+.company-timeline time {
+  display: block;
+  margin-bottom: .4rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -.05em;
+}
 .company-timeline p, .company-steps p { color: var(--muted); margin-top: .6rem; word-break: keep-all; }
 .company-note { color: var(--muted); font-size: .9rem; }
+@media (max-width: 680px) {
+  .company-timeline::before, .company-timeline li::before { left: .55rem; }
+  .company-timeline li { grid-template-columns: minmax(0, 1fr); min-height: 0; padding-bottom: 2rem; }
+  .company-timeline li:nth-child(n) > div { grid-column: 1; padding-inline: 2rem 0; text-align: left; }
+}
 .company-steps {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));

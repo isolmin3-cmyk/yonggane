@@ -1,59 +1,44 @@
-document.documentElement.classList.add("js");
+const menu = document.querySelector('.menu-toggle');
+const navigation = document.querySelector('#site-nav');
 
-const navigation = document.querySelector('#navigation');
-const menu = document.querySelector('.menu');
-const groups = [...navigation.querySelectorAll('details')];
-
-function closeGroups(except) {
-  groups.forEach(group => {
-    if (group !== except) group.open = false;
-  });
-}
-
-function setMobileMenu(open) {
-  menu.setAttribute('aria-expanded', String(open));
+function setMenu(open) {
   navigation.classList.toggle('open', open);
-  if (!open) closeGroups();
+  menu.setAttribute('aria-expanded', String(open));
+  menu.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
 }
 
-menu.addEventListener('click', () => {
-  setMobileMenu(menu.getAttribute('aria-expanded') !== 'true');
-});
-
-groups.forEach(group => group.addEventListener('toggle', () => {
-  if (group.open) closeGroups(group);
-}));
-
-navigation.addEventListener('click', event => {
-  if (event.target.closest('a')) setMobileMenu(false);
-});
-
-document.addEventListener('click', event => {
-  if (!event.target.closest('.header')) setMobileMenu(false);
-});
-
-document.addEventListener('keydown', event => {
-  if (event.key !== 'Escape') return;
-  const openGroup = groups.find(group => group.open);
-  if (openGroup) {
-    openGroup.open = false;
-    openGroup.querySelector('summary').focus();
-  } else if (menu.getAttribute('aria-expanded') === 'true') {
-    setMobileMenu(false);
+menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') === 'false'));
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+    setMenu(false);
     menu.focus();
   }
 });
 
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
-  const reveal = new IntersectionObserver(entries => {
-    entries.forEach(({ isIntersecting, target }) => {
-      if (!isIntersecting) return;
-      target.classList.add('revealed');
-      reveal.unobserve(target);
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.section h2, .product-grid article, .trade').forEach(element => {
-    if (element.getBoundingClientRect().top > innerHeight) reveal.observe(element);
+const inquiry = document.querySelector('#inquiry');
+if (inquiry) {
+  const params = new URLSearchParams(window.location.search);
+  const type = document.querySelector('#inquiry-type');
+  const product = document.querySelector('#inquiry-product');
+  const requestedType = params.get('type');
+  if ([...type.options].some((option) => option.value === requestedType)) {
+    type.value = requestedType;
+  }
+  if (params.get('product') === 'abalone') {
+    product.value = '자숙전복 1kg';
+  }
+  inquiry.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const lines = [...new FormData(inquiry)].map(([name, value]) =>
+      name === type.name ? name + ' — ' + type.selectedOptions[0].text : name + ' — ' + value);
+    const file = new Blob(['\uFEFF', '기적수산 사업문의\n\n', lines.join('\n')], {type: 'text/plain;charset=utf-8'});
+    const download = document.createElement('a');
+    download.href = URL.createObjectURL(file);
+    download.download = '기적수산-사업문의.txt';
+    document.body.append(download);
+    download.click();
+    download.remove();
+    setTimeout(() => URL.revokeObjectURL(download.href), 1000);
+    document.querySelector('#form-status').textContent = '문의 내용 파일을 다운로드했습니다.';
   });
 }

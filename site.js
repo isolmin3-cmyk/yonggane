@@ -15,6 +15,29 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+const groups = [...navigation.querySelectorAll('.nav-group')];
+
+groups.forEach((group) => {
+  group.querySelector('summary').addEventListener('click', () => {
+    groups.filter((other) => other !== group).forEach((other) => { other.open = false; });
+  });
+});
+
+document.addEventListener('click', (event) => {
+  if (!navigation.contains(event.target)) {
+    groups.forEach((group) => { group.open = false; });
+  }
+});
+
+navigation.addEventListener('keydown', (event) => {
+  const group = event.target.closest('.nav-group[open]');
+  if (event.key === 'Escape' && group) {
+    event.stopPropagation();
+    group.open = false;
+    group.querySelector('summary').focus();
+  }
+});
+
 const inquiry = document.querySelector('#inquiry');
 if (inquiry) {
   const params = new URLSearchParams(window.location.search);

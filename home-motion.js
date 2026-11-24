@@ -5,7 +5,7 @@ if (homeMotion.matches && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.dataset.reveal = 'shown';
+        entry.target.parentElement.dataset.reveal = 'shown';
         observer.unobserve(entry.target);
       }
     });
@@ -13,6 +13,6 @@ if (homeMotion.matches && 'IntersectionObserver' in window) {
 
   sections.forEach((section) => {
     section.dataset.reveal = 'pending';
-    observer.observe(section);
+    observer.observe(section.querySelector(".wrap"));
   });
 }

@@ -163,3 +163,6 @@
   .company-title img { width: 43px; }
   .company-row p { padding: 0; }
 }
+
+.product-link { display: block; text-decoration: none; }
+.product-link:is(:hover, :focus-visible) h3 { text-decoration: underline; text-underline-offset: .2em; }

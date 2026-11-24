@@ -1,0 +1,21 @@
+.brand-hero {
+  min-height: clamp(370px, 52vw, 650px);
+  background-position: center 51%;
+}
+.brand-hero::before {
+  background: linear-gradient(90deg, #071f21ee 0%, #0b3033c9 37%, #0b303340 66%, #0b303312 100%);
+}
+.brand-hero.sub[data-reveal="shown"]::after { background-position: center 51%; }
+.brand-hero h1 {
+  font-size: clamp(2.25rem, 4.8vw, 4.6rem);
+  max-width: 13ch;
+  line-height: 1.22;
+}
+.brand-table { background: #f7f5ee; }
+.brand-table .button { margin-top: 1.5rem; }
+.brand-table img { height: auto; aspect-ratio: 4 / 3; }
+@media (max-width: 720px) {
+  .brand-hero { min-height: 420px; background-position: 61% center; }
+  .brand-hero.sub[data-reveal="shown"]::after { background-position: 61% center; }
+  .brand-hero::before { background: linear-gradient(90deg, #071f21e5, #0b303355); }
+}

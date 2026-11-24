@@ -17,9 +17,35 @@ document.addEventListener('keydown', (event) => {
 
 const groups = [...navigation.querySelectorAll('.nav-group')];
 
+const desktopPointer = window.matchMedia('(min-width: 721px) and (hover: hover) and (pointer: fine)');
+
+function openGroup(group) {
+  groups.forEach((other) => { other.open = other === group; });
+}
+
 groups.forEach((group) => {
-  group.querySelector('summary').addEventListener('click', () => {
-    groups.filter((other) => other !== group).forEach((other) => { other.open = false; });
+  const summary = group.querySelector('summary');
+
+  summary.addEventListener('click', (event) => {
+    if (desktopPointer.matches && event.detail > 0 && group.matches(':hover')) {
+      event.preventDefault();
+      openGroup(group);
+    } else if (!group.open) {
+      groups.filter((other) => other !== group).forEach((other) => { other.open = false; });
+    }
+  });
+
+  group.addEventListener('pointerenter', (event) => {
+    if (desktopPointer.matches && event.pointerType === 'mouse') {
+      openGroup(group);
+    }
+  });
+
+  group.addEventListener('pointerleave', (event) => {
+    if (desktopPointer.matches && event.pointerType === 'mouse' &&
+        !group.querySelector('ul').contains(document.activeElement)) {
+      group.open = false;
+    }
   });
 });
 
